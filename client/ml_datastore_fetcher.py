@@ -18,6 +18,6 @@ def get_word_vector(word: str) -> Word2Vec:
     if word in LOCAL_CACHE:
         vector_raw_data = LOCAL_CACHE[word]
     else:
-        vector_raw_data = requests.get('{}/{}'.format(API_ENDPOINT, word))
+        vector_raw_data = requests.get('{}/{}'.format(API_ENDPOINT, word)).text.rstrip()
         LOCAL_CACHE[word] = vector_raw_data
     return Word2Vec(vector_raw_data)

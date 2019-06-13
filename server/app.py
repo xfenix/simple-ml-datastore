@@ -18,7 +18,7 @@ app = Sanic()
 async def test(request, word):
     async with aiofiles.open(ML_FILE_ROOT) as f:
         async for line in f:
-            if line.startswith(word):
+            if line.lower().startswith(word.lower()):
                 return text(line)
     return text('Not found', status=404)
 
